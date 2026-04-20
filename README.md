@@ -56,9 +56,10 @@ Supported URL formats:
 
 #### Manual
 
-1. download `video-embed.zip` from the [latest release](../../releases/latest)
-2. unzip it into `<your vault>/.obsidian/plugins/`
-3. reload Obsidian and enable the plugin in **Settings → Community plugins**
+1. download `main.js` and `manifest.json` from the [latest release](../../releases/latest)
+2. create a folder `<your vault>/.obsidian/plugins/video-embed/`
+3. place both files in that folder
+4. reload Obsidian and enable the plugin in **Settings → Community plugins**
 
 ---
 
@@ -73,8 +74,10 @@ Found a bug or have a suggestion? [Open an issue](../../issues).
 
 ### License
 
-[GPL-3.0](LICENSE)
+This project is licensed under **[GPL-3.0](LICENSE)-or-later**.
+
+In practical terms, that means distributed modifications and derivative versions must also remain open source under GPL-compatible terms.
 
 ---
 
-<p align="center"><sub>made with ⏳ by punkyard</sub></p>
+<p align="center"><sub>made with ⏳ by <a href="https://github.com/punkyard">punkyard</a></sub></p>
