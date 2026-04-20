@@ -4,7 +4,7 @@ A simple Obsidian plugin to embed video in notes.
 
 ![Video Embed](assets/hero.png)
 
-Paste a YouTube URL on an **empty line** in an Obsidian note and it's instantly converted into your preferred embed format — no commands, no shortcuts, just paste.
+Simple paste a YouTube URL on an **empty line** in an Obsidian note and it's instantly converted into your preferred embed format — no commands, no shortcuts, just paste.
 
 ## Features
 
@@ -15,13 +15,17 @@ Paste a YouTube URL on an **empty line** in an Obsidian note and it's instantly 
 
 ## Embed styles
 
+![Video Embed Settings](assets/video-embed-settings.png)
+
 Choose your preferred style in **Settings → Video Embed**.
 
 | Style | Output | Responsive |
 |---|---|---|
-| markdown | `![]()` | No — fixed size |
-| iframe | `<iframe ...>` | Yes — fills pane width |
-| div | `<div><iframe ...>` | Yes — bulletproof |
+| markdown | `![]()` | no — fixed size |
+| iframe | `<iframe ...>` | yes — fills pane width |
+| div | `<div><iframe ...>` | yes — bulletproof |
+
+![Video Embed Options](assets/video-embed-options.png)
 
 ## Usage
 
@@ -45,28 +49,28 @@ Supported URL formats:
 
 ### From Obsidian Community Plugins
 
-1. Open **Settings → Community plugins**
-2. Disable Safe mode if prompted
-3. Click **Browse** and search for `Video Embed`
-4. Install and enable
-5. Choose your preferred style (markdown, iframe, div)
+1. open **Settings → Community plugins**
+2. disable Safe mode if prompted
+3. click **Browse** and search for `Video Embed`
+4. install and enable
+5. choose your preferred style (markdown, iframe, div)
 
 ### Manual
 
-1. Download `video-embed.zip` from the [latest release](../../releases/latest)
-2. Unzip it into `<your vault>/.obsidian/plugins/`
-3. Reload Obsidian and enable the plugin in **Settings → Community plugins**
+1. download `video-embed.zip` from the [latest release](../../releases/latest)
+2. unzip it into `<your vault>/.obsidian/plugins/`
+3. reload Obsidian and enable the plugin in **Settings → Community plugins**
 
 ---
 
 ## Roadmap
 
-- **v2** _when repo hits 100 GitHub ⭐_ — More video providers (Vimeo, Dailymotion, …)
-- **v3** _when repo hits 1 000 GitHub ⭐_ — Import video metadata (title, thumbnail) from URL
+- **v2** _when repo hits 100 GitHub ⭐_ — more video providers (Vimeo, Dailymotion, …)
+- **v3** _when repo hits 1 000 GitHub ⭐_ — import video metadata (title, thumbnail) from URL
 
 ## Contributing
 
-Found a bug or have a suggestion? [Open an issue](../../issues) — no pull requests.
+Found a bug or have a suggestion? [Open an issue](../../issues).
 
 ## License
 
