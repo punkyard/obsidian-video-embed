@@ -77,6 +77,4 @@ Found a bug or have a suggestion? [Open an issue](../../issues).
 
 ---
 
-<p align="center"><sub>made with <span style="display:inline-block;animation:spin 4s linear infinite">⏳</span> by punkyard</sub></p>
-
-<style>@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}</style>
+<p align="center"><sub>made with ⏳ by punkyard</sub></p>
