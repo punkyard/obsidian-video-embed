@@ -57,6 +57,7 @@ export default class VideoEmbed extends Plugin {
 					}
 
 					editor.replaceRange(embedCode, { line: line, ch: 0 }, { line: line, ch: lineText.length });
+					editor.setCursor({ line: line, ch: embedCode.length });
 				}
 			})
 		);
