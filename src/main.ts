@@ -35,6 +35,7 @@ export default class VideoEmbed extends Plugin {
 				const isShort = pastedText.includes('/shorts/');
 				const shortsWidth = this.settings.shortsWidth || '100%';
 				const embedSrc = this.buildYoutubeEmbedSrc(videoId, startTime);
+				const markdownUrl = this.buildYoutubeWatchUrl(videoId, startTime);
 
 				if (videoId) {
 					evt.preventDefault();
@@ -43,7 +44,7 @@ export default class VideoEmbed extends Plugin {
 
 					switch (this.settings.embedStyle) {
 						case 'md':
-							embedCode = `![](${pastedText})`;
+							embedCode = `![](${markdownUrl})`;
 							break;
 						case 'iframe':
 							if (isShort) {
@@ -84,6 +85,13 @@ export default class VideoEmbed extends Plugin {
 		if (!videoId || startTime === null || startTime < 0) return baseUrl;
 
 		return `${baseUrl}?start=${startTime}`;
+	}
+
+	buildYoutubeWatchUrl(videoId: string | null, startTime: number | null): string {
+		const baseUrl = `https://www.youtube.com/watch?v=${videoId ?? ''}`;
+		if (!videoId || startTime === null || startTime < 0) return baseUrl;
+
+		return `${baseUrl}&t=${startTime}s`;
 	}
 
 	extractYoutubeStartTime(url: string): number | null {
