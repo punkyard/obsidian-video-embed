@@ -65,10 +65,9 @@ Choose your preferred embed mode in Obsidian **Settings... → Video Embed**.
 
 #### Manual
 
-1. download `main.js`, `manifest.json`, and `styles.css` from the [latest release](../../releases/latest)
-2. create a folder `<your vault>/.obsidian/plugins/video-embed/`
-3. place all three files in that folder
-4. reload Obsidian and enable the plugin in Obsidian **Settings... → Community plugins**
+1. download the source ZIP from the [latest release](../../releases/latest)
+2. unzip the archive into `<your vault>/.obsidian/plugins/`
+3. reload Obsidian and enable the plugin in Obsidian **Settings... → Community plugins**
 
 ---
 
