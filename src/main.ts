@@ -43,7 +43,7 @@ export default class VideoEmbed extends Plugin {
 
 					switch (this.settings.embedStyle) {
 						case 'md':
-							embedCode = `![](${pastedText})`;
+							embedCode = `![](${this.buildYoutubeWatchUrl(videoId, startTime)})`;
 							break;
 						case 'iframe':
 							if (isShort) {
@@ -84,6 +84,17 @@ export default class VideoEmbed extends Plugin {
 		if (!videoId || startTime === null || startTime < 0) return baseUrl;
 
 		return `${baseUrl}?start=${startTime}`;
+	}
+
+	buildYoutubeWatchUrl(videoId: string | null, startTime: number | null): string {
+		if (!videoId) return '';
+
+		let url = `https://www.youtube.com/watch?v=${videoId}`;
+		if (startTime !== null && startTime >= 0) {
+			url += `&t=${startTime}`;
+		}
+
+		return url;
 	}
 
 	extractYoutubeStartTime(url: string): number | null {
