@@ -35,7 +35,6 @@ export default class VideoEmbed extends Plugin {
 				const isShort = pastedText.includes('/shorts/');
 				const shortsWidth = this.settings.shortsWidth || '100%';
 				const embedSrc = this.buildYoutubeEmbedSrc(videoId, startTime);
-				const markdownUrl = this.buildYoutubeWatchUrl(videoId, startTime);
 
 				if (videoId) {
 					evt.preventDefault();
@@ -44,7 +43,7 @@ export default class VideoEmbed extends Plugin {
 
 					switch (this.settings.embedStyle) {
 						case 'md':
-							embedCode = `![](${markdownUrl})`;
+							embedCode = `![](${this.buildYoutubeWatchUrl(videoId, startTime)})`;
 							break;
 						case 'iframe':
 							if (isShort) {
@@ -88,10 +87,14 @@ export default class VideoEmbed extends Plugin {
 	}
 
 	buildYoutubeWatchUrl(videoId: string | null, startTime: number | null): string {
-		const baseUrl = `https://www.youtube.com/watch?v=${videoId ?? ''}`;
-		if (!videoId || startTime === null || startTime < 0) return baseUrl;
+		if (!videoId) return '';
 
-		return `${baseUrl}&t=${startTime}s`;
+		let url = `https://www.youtube.com/watch?v=${videoId}`;
+		if (startTime !== null && startTime >= 0) {
+			url += `&t=${startTime}`;
+		}
+
+		return url;
 	}
 
 	extractYoutubeStartTime(url: string): number | null {
@@ -118,6 +121,20 @@ export default class VideoEmbed extends Plugin {
 		const totalSeconds = (hours * 3600) + (minutes * 60) + seconds;
 
 		return totalSeconds > 0 ? totalSeconds : null;
+	}
+
+	normalizeShortsWidth(value: string): string {
+		const normalized = value.trim().replace(/\s+/g, '');
+		if (normalized === '') {
+			return '100%';
+		}
+		if (/^\d+$/.test(normalized)) {
+			return `${normalized}px`;
+		}
+		if (/^\d+(?:\.\d+)?%$/.test(normalized) || /^\d+(?:\.\d+)?px$/.test(normalized)) {
+			return normalized;
+		}
+		return normalized;
 	}
 
 	extractYoutubeId(url: string): string | null {
@@ -147,10 +164,6 @@ class VideoEmbedSettingTab extends PluginSettingTab {
 		const { containerEl } = this;
 		containerEl.empty();
 
-		new Setting(containerEl)
-			.setName('Video embed settings')
-			.setHeading();
-
 		const embedDesc = document.createDocumentFragment();
 		embedDesc.append(
 			'Choose how YouTube links are automatically formatted when pasted on an empty line.',
@@ -160,16 +173,16 @@ class VideoEmbedSettingTab extends PluginSettingTab {
 			embedDesc.createEl('br'),
 			embedDesc.createEl('span', { text: '2. Iframe: simple HTML — fills pane width with no black bars.' }),
 			embedDesc.createEl('br'),
-			embedDesc.createEl('span', { text: '3. Div: resilient wrapper — should work in 100% of cases.' }),
+			embedDesc.createEl('span', { text: '3. Div: resilient wrapper — works in most cases.' }),
 		);
 
 		new Setting(containerEl)
 			.setName('Embed style')
 			.setDesc(embedDesc)
 			.addDropdown(dropdown => dropdown
-				.addOption('md', '1. Standard markdown')
-				.addOption('iframe', '2. Iframe (responsive)')
-				.addOption('div', '3. Div (responsive)')
+				.addOption('md', 'Markdown')
+				.addOption('iframe', 'Iframe (responsive)')
+				.addOption('div', 'Div (responsive)')
 				.setValue(this.plugin.settings.embedStyle)
 				.onChange(async (value: string) => {
 					this.plugin.settings.embedStyle = value as VideoEmbedSettings['embedStyle'];
@@ -177,13 +190,13 @@ class VideoEmbedSettingTab extends PluginSettingTab {
 				}));
 
 		new Setting(containerEl)
-			.setName('Shorts width')
-			.setDesc('Width of the embed for YouTube shorts (portrait videos). Use % for relative values (for example, 50%) or px for fixed values (for example, 360px). Default: 100%.')
+			.setName('YouTube shorts width')
+			.setDesc('Width of the embed for YouTube shorts (portrait videos). Enter a number for pixels (for example, 360) or a percentage for ratio (for example, 100%).')
 			.addText(text => text
 				.setPlaceholder('100%')
 				.setValue(this.plugin.settings.shortsWidth)
 				.onChange(async (value: string) => {
-					this.plugin.settings.shortsWidth = value.trim() || '100%';
+					this.plugin.settings.shortsWidth = this.plugin.normalizeShortsWidth(value);
 					await this.plugin.saveSettings();
 				}));
 	}

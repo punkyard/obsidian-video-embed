@@ -1,58 +1,67 @@
 ![Video Embed](assets/hero.png)
 
-Simply paste a YouTube URL on an **empty line** in an Obsidian note and it's instantly converted into your preferred embed format (markdown, iframe or div) — no commands, no shortcuts, just paste.
+> Simply paste a YouTube URL on an **empty line** in an Obsidian note and it's instantly converted into your preferred embed format (markdown, iframe or div) — no commands, no shortcuts, just paste.
 
-## Features
+
+
+### **Features**
 
 - intercepts YouTube URLs pasted on empty lines
 - three preview styles to choose from
+    - simple markdown
     - responsive in iframe and div modes
     - working on desktop and mobile
 
-## Embed styles
+### **Embed styles**
 
-Choose your preferred style in **Settings → Video Embed**.
+Choose your preferred embed mode in **Settings → Video Embed**.
 
-![Video Embed Settings](assets/video-embed-settings.png)
+![Video Embed options](assets/video-embed-options.png)
 
 
 | Style | Output | Responsive |
 |---|---|---|
 | markdown | `![]()` | no — fixed size |
 | iframe | `<iframe ...>` | yes — fills pane width |
-| div | `<div><iframe ...>` | yes — bulletproof |
+| div | `<div><iframe ...>` | yes, in a frame — bulletproof |
 
-#### Results in source mode:
+###### Results in source mode:
 
-![Video Embed Options](assets/video-embed-options.png)
+![Video Embed source](assets/video-embed-source.png)
 
-## Usage
+---
+
+### **Usage**
 
 ![get YouTube URL](assets/video-embed-get-video-url.png)
 
-1. copy YouTube video URL
+1. copy YouTube video URL (right-click on it: Copy video URL)
 2. open any note
 3. place your cursor on a blank line
 4. paste the YouTube URL (`Cmd+V` / `Ctrl+V`)
 5. the URL is automatically replaced with the embed
 
-Supported URL formats:
+###### Supported URL formats:
 - `https://www.youtube.com/watch?v=...`
 - `https://youtu.be/...`
 - `https://www.youtube.com/shorts/...`
 - `https://www.youtube.com/embed/...`
 
+<br><p align="center">
+  <img src="assets/video-embed-ios-markdown-border.png" alt="iOS markdown rendering" />
+</p><br>
+
 ---
 
-### Installation
+### **Installation**
 
 #### From Obsidian Community Plugins
 
 1. open **Settings → Community plugins**
-2. disable Safe mode if prompted
-3. click **Browse** and search for `Video Embed`
-4. install and enable
-5. choose your preferred style (markdown, iframe, div)
+2. disable `Safe mode` if prompted
+3. click `Browse` and search for `Video Embed`
+4. install and enable the plugin
+5. open Òptions` and choose your preferred style (markdown, iframe, div)
 
 #### Manual
 
@@ -63,16 +72,18 @@ Supported URL formats:
 
 ---
 
-### Roadmap
+### **Roadmap**
 
 - **v2** _when repo hits 100 GitHub ⭐_ — more video providers (Vimeo, Dailymotion, …)
 - **v3** _when repo hits 1 000 GitHub ⭐_ — import video metadata (title, thumbnail) from URL
 
-### Contributing
+### **Contributing**
 
 Found a bug or have a suggestion? [Open an issue](../../issues).
 
-### License
+---
+
+### **License**
 
 This project is licensed under **[GPL-3.0](LICENSE)-or-later**.
 
